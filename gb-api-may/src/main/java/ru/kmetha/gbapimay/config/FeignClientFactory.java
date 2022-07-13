@@ -29,7 +29,6 @@ public class FeignClientFactory {
     @Autowired
     private final GbApiProperties gbApiProperties;
 
-    @Bean
     public <T> T newFeignGateway(Class<T> requiredType, String url) {
         return Feign.builder()
                 .encoder(new SpringEncoder(messageConverters))
@@ -54,54 +53,6 @@ public class FeignClientFactory {
                 .logLevel(Logger.Level.FULL)
                 .logger(new Slf4jLogger(requiredType))
                 .target(requiredType, url);
-    }
-
-    @Bean
-    public ProductGateway productGateway() {
-        return Feign.builder()
-                .encoder(new SpringEncoder(messageConverters))
-                .decoder(new OptionalDecoder(new ResponseEntityDecoder(new SpringDecoder(this.messageConverters, this.customizers))))
-                .retryer(new Retryer.Default(
-                        gbApiProperties.getConnection().getPeriod(),
-                        gbApiProperties.getConnection().getMaxPeriod(),
-                        gbApiProperties.getConnection().getMaxAttempts()
-                ))
-                .errorDecoder(errorDecoder())
-                .options(new Request.Options(
-                        gbApiProperties.getConnection().getConnectTimeout(),
-                        TimeUnit.MILLISECONDS,
-                        gbApiProperties.getConnection().getReadTimeout(),
-                        TimeUnit.MILLISECONDS,
-                        gbApiProperties.getConnection().isFollowRedirect()
-                ))
-                .contract(new SpringMvcContract())
-                .logLevel(Logger.Level.FULL)
-                .logger(new Slf4jLogger(ProductGateway.class))
-                .target(ProductGateway.class, gbApiProperties.getEndpoint().getProductUrl());
-    }
-
-    @Bean
-    public CategoryGateway categoryGateway() {
-        return Feign.builder()
-                .encoder(new SpringEncoder(messageConverters))
-                .decoder(new OptionalDecoder(new ResponseEntityDecoder(new SpringDecoder(this.messageConverters, this.customizers))))
-                .retryer(new Retryer.Default(
-                        gbApiProperties.getConnection().getPeriod(),
-                        gbApiProperties.getConnection().getMaxPeriod(),
-                        gbApiProperties.getConnection().getMaxAttempts()
-                ))
-                .errorDecoder(errorDecoder())
-                .options(new Request.Options(
-                        gbApiProperties.getConnection().getConnectTimeout(),
-                        TimeUnit.MILLISECONDS,
-                        gbApiProperties.getConnection().getReadTimeout(),
-                        TimeUnit.MILLISECONDS,
-                        gbApiProperties.getConnection().isFollowRedirect()
-                ))
-                .contract(new SpringMvcContract())
-                .logLevel(Logger.Level.FULL)
-                .logger(new Slf4jLogger(CategoryGateway.class))
-                .target(CategoryGateway.class, gbApiProperties.getEndpoint().getCategoryUrl());
     }
 
     private ErrorDecoder errorDecoder() {

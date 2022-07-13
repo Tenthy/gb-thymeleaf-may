@@ -1,9 +1,10 @@
-package ru.kmetha.gbthymeleafmay.controller;
+package ru.kmetha.gbthymeleafmay.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import ru.kmetha.gbthymeleafmay.entity.Cart;
 import ru.kmetha.gbthymeleafmay.entity.Product;
 import ru.kmetha.gbthymeleafmay.service.CartService;

@@ -1,4 +1,4 @@
-package ru.kmetha.gbthymeleafmay.controller;
+package ru.kmetha.gbthymeleafmay.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

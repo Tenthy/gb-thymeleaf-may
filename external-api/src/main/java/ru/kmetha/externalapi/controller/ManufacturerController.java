@@ -1,6 +1,7 @@
 package ru.kmetha.externalapi.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import ru.kmetha.gbapimay.manufacturer.dto.ManufacturerDto;
 @RequestMapping("/manufacturer")
 public class ManufacturerController {
 
+    @Autowired
     private ManufacturerGateway manufacturerGateway;
 
     @GetMapping("/all")

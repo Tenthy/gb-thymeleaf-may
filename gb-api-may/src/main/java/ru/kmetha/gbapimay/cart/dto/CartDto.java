@@ -14,5 +14,4 @@ public class CartDto {
 
     private Long id;
     private String status;
-    private Set<ProductDto> products;
 }

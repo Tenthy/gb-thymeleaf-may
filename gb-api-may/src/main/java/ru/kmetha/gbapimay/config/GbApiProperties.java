@@ -18,6 +18,7 @@ public class GbApiProperties {
         private String manufacturerUrl;
         private String productUrl;
         private String categoryUrl;
+        private String cartUrl;
     }
 
     @Getter

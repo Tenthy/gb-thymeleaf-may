@@ -1,4 +1,4 @@
-package ru.kmetha.gbthymeleafmay.controller;
+package ru.kmetha.gbthymeleafmay.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -6,13 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kmetha.gbapimay.category.CategoryDto;
+import ru.kmetha.gbthymeleafmay.entity.Category;
+import ru.kmetha.gbthymeleafmay.service.CategoryService;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/category")
 public class CategoryController {
 
-    private CategoryGateway categoryService;
+    private CategoryService categoryService;
 
     @GetMapping("/all")
     public String getCategoryList(Model model) {

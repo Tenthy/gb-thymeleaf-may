@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import ru.kmetha.gbapimay.cart.api.CartGateway;
 import ru.kmetha.gbapimay.category.api.CategoryGateway;
 import ru.kmetha.gbapimay.manufacturer.api.ManufacturerGateway;
 import ru.kmetha.gbapimay.product.api.ProductGateway;
@@ -31,5 +32,10 @@ public class FeignConfig {
     @Bean
     public ProductGateway productGateway() {
         return feignClientFactory.newFeignGateway(ProductGateway.class, gbApiProperties.getEndpoint().getManufacturerUrl());
+    }
+
+    @Bean
+    public CartGateway cartGateway() {
+        return feignClientFactory.newFeignGateway(CartGateway.class, gbApiProperties.getEndpoint().getCartUrl());
     }
 }

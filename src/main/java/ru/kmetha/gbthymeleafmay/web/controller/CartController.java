@@ -1,4 +1,4 @@
-package ru.kmetha.gbthymeleafmay.controller;
+package ru.kmetha.gbthymeleafmay.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
